@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">dietApp</string>
+    <string name="de_title">以下の項目を入力してください</string>
+    <string name="gra_title">以下から項目と期間を選んでください。</string>
+    <string name="bd_weight">体重(kg):</string>
+    <string name="bd_bmi">BMI:</string>
+    <string name="bd_fat">体脂肪:</string>
+    <string name="bd_moisture">水分:</string>
+    <string name="bd_muscle">筋肉:</string>
+    <string name="bd_bone">骨量:</string>
+    <string name="bd_meta">代謝:</string>
+    <string name="bd_visceral">内臓脂肪:</string>
+    <string name="bt_save">保存</string>
+    <string name="bt_set">表示</string>
+    <string name="ch_f">項目:</string>
+    <string name="ch_d">期間:</string>
+    <string name="graph">グラフ表示</string>
+    <string name="dt_clear">全データクリア</string>
+    <string name="dt_delete">1つ前のデータを削除</string>
+    <string-array name="sp_list">
+        <item>体重(kg)</item>
+        <item>BMI</item>
+        <item>体脂肪</item>
+        <item>水分</item>
+        <item>筋肉</item>
+        <item>骨量</item>
+        <item>代謝</item>
+        <item>内臓脂肪</item>
+    </string-array>
+    <string-array name="dt_list">
+        <item>7日</item>
+        <item>14日</item>
+        <item>21日</item>
+        <item>28日</item>
+    </string-array>
+</resources>
