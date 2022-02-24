@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private val dbHelper = DatabaseHelper(this@MainActivity,"DietDB",null,1);
@@ -25,32 +25,15 @@ class MainActivity : AppCompatActivity() {
     fun btnOnClick(view: View){
         val database = dbHelper.writableDatabase
 
-        val bdWeight: EditText = findViewById(R.id.bdWeight)
-        val strWeight = bdWeight.text.toString()
-        val bdBmi:EditText = findViewById(R.id.bdBmi)
-        val strBmi = bdBmi.text.toString()
-        val bdFat:EditText = findViewById(R.id.bdFat)
-        val strFat = bdFat.text.toString()
-        val bdMoisture:EditText = findViewById(R.id.bdMoisture)
-        val strMoisture = bdMoisture.text.toString()
-        val bdMuscle:EditText = findViewById(R.id.bdMuscle)
-        val strMuscle = bdMuscle.text.toString()
-        val bdBone:EditText = findViewById(R.id.bdBone)
-        val strBone = bdBone.text.toString()
-        val bdMeta:EditText = findViewById(R.id.bdMeta)
-        val strMeta = bdMeta.text.toString()
-        val bdVisceral:EditText = findViewById(R.id.bdVisceral)
-        val strVis = bdVisceral.text.toString()
-
         val values = ContentValues()
-        values.put("weight",strWeight)
-        values.put("bmi",strBmi)
-        values.put("fat",strFat)
-        values.put("moisture",strMoisture)
-        values.put("muscle",strMuscle)
-        values.put("bone",strBone)
-        values.put("meta",strMeta)
-        values.put("visceral",strVis)
+        values.put("weight",getString(R.string.bd_weight))
+        values.put("bmi",getString(R.string.bd_bmi))
+        values.put("fat",getString(R.string.bd_fat))
+        values.put("moisture",getString(R.string.bd_moisture))
+        values.put("muscle",getString(R.string.bd_muscle))
+        values.put("bone",getString(R.string.bd_bone))
+        values.put("meta",getString(R.string.bd_meta))
+        values.put("visceral",getString(R.string.bd_visceral))
 
         database.insertOrThrow("DietTable",null,values)
 

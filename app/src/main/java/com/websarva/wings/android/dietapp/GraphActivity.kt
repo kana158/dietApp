@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Spinner
-import android.widget.TextView
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import kotlinx.android.synthetic.main.activity_graph.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class GraphActivity : AppCompatActivity() {
     private val dbHelper = DatabaseHelper(this@GraphActivity,"DietDB",null,1)
@@ -39,10 +38,8 @@ class GraphActivity : AppCompatActivity() {
 
     fun btnOnGraClick(view: View){
         var i = 0
-        val spinner1 = findViewById<Spinner>(R.id.spList)
-        val idx = spinner1.selectedItemPosition + 1
-        val spinner2 = findViewById<Spinner>(R.id.dtList)
-        val idx2 = (spinner2.selectedItemPosition + 1) * 7
+        val idx = spList.selectedItemPosition + 1
+        val idx2 = (dtList.selectedItemPosition + 1) * 7
 
         val x: List<Float> = List(idx2){it.toFloat() + 1f}
         val ary = FloatArray(idx2)
@@ -52,7 +49,7 @@ class GraphActivity : AppCompatActivity() {
         val cursor = databaseR.rawQuery(sql,null)
         if(cursor.count > 0){
             while(cursor.moveToNext() && i < idx2){
-                if(cursor.getFloat(idx) !== 0f){
+                if(cursor.getFloat(idx) != 0f){
                     ary[idx2-1-i] = cursor.getFloat(idx)
                     ++i
                 }
@@ -62,7 +59,7 @@ class GraphActivity : AppCompatActivity() {
         var entryList = mutableListOf<Entry>()//1本目の線
         for(i in x.indices){
             entryList.add(
-                Entry(x[i].toFloat(), ary[i])
+                Entry(x[i], ary[i])
             )
         }
 
@@ -72,11 +69,6 @@ class GraphActivity : AppCompatActivity() {
         lineDataSets.add(lineDataSet)
 
         val lineData = LineData(lineDataSets)
-        val lineChart = findViewById<LineChart>(R.id.lineChart)
-        lineChart.setNoDataText("まだデータがありません")
-        lineChart.setNoDataTextColor(Color.GRAY)
-        lineChart.setBorderColor(Color.CYAN)
-        lineChart.setTouchEnabled(true)
 
         lineChart.data = lineData
         lineChart.xAxis.apply {
